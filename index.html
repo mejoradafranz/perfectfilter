@@ -20,13 +20,14 @@
     theme: {
       extend: {
         colors: {
-          ink:     '#0C1210',
-          slate:   '#171F1D',
-          slate2:  '#1E2724',
-          ivory:   '#F3F1EA',
-          mist:    '#8B928C',
-          glacier: '#8FBFB2',
-          glacierDeep: '#3F5850',
+          cream:     '#FFFAF5',
+          paper:     '#F2ECE0',
+          charcoal:  '#272A2D',
+          blue:      '#3076A8',
+          blueDeep:  '#1F4E70',
+          gold:      '#C1986C',
+          goldDeep:  '#8D6435',
+          stone:     '#7A7A7A',
           pewter:  '#B7BDB6',
           pewterDeep: '#6E756E',
         },
@@ -40,12 +41,12 @@
 </script>
 
 <style>
-  :root { color-scheme: dark; }
+  :root { color-scheme: light; }
 
   html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
-    background: #0C1210;
+    background: #FFFAF5;
     font-feature-settings: "tnum" 1;
   }
 
@@ -55,8 +56,8 @@
     inset: 0;
     pointer-events: none;
     z-index: 60;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
@@ -65,10 +66,10 @@
     -webkit-backdrop-filter: blur(16px) saturate(140%);
   }
 
-  /* frosted glass panel used across cards/nav */
+  /* frosted glass panel used across cards/nav — dark-tinted translucency on a light ground */
   .glass {
-    background: rgba(237, 242, 240, 0.05);
-    border: 1px solid rgba(237, 242, 240, 0.09);
+    background: rgba(39, 42, 45, 0.04);
+    border: 1px solid rgba(39, 42, 45, 0.09);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -92,14 +93,14 @@
     aspect-ratio: 9 / 19;
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: inset 0 0 0 1px rgba(237,242,240,0.12), 0 40px 100px -20px rgba(0,0,0,0.7);
+    box-shadow: inset 0 0 0 1px rgba(39,42,45,0.10), 0 30px 70px -20px rgba(39,42,45,0.35);
   }
   .product-frame img { display: block; }
 
   .glow-orb {
     position: absolute;
     border-radius: 999px;
-    background: radial-gradient(circle, rgba(143,191,178,0.35) 0%, rgba(143,191,178,0) 70%);
+    background: radial-gradient(circle, rgba(48,118,168,0.14) 0%, rgba(48,118,168,0) 70%);
     filter: blur(20px);
   }
 
@@ -115,13 +116,13 @@
     position: absolute;
     left: 15px; top: 8px; bottom: 8px;
     width: 1px;
-    background: linear-gradient(180deg, rgba(143,191,178,0.5), rgba(143,191,178,0.05));
+    background: linear-gradient(180deg, rgba(48,118,168,0.5), rgba(48,118,168,0.06));
   }
   @media (min-width: 768px) { .stage-line::before { left: 19px; } }
   .stage-dot {
     width: 9px; height: 9px; border-radius: 999px;
-    background: #8FBFB2;
-    box-shadow: 0 0 0 4px rgba(143,191,178,0.15);
+    background: #3076A8;
+    box-shadow: 0 0 0 4px rgba(48,118,168,0.15);
   }
 
   /* ---- Taste comparison slider ---- */
@@ -129,7 +130,7 @@
     position: relative;
     border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(237,242,240,0.09);
+    border: 1px solid rgba(39,42,45,0.10);
   }
   .taste-after {
     position: absolute; inset: 0;
@@ -146,13 +147,13 @@
     transform: translate(-50%, -50%);
     width: 44px; height: 44px; border-radius: 999px;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(243,241,234,0.95); color: #0C1210;
+    background: rgba(39,42,45,0.92); color: #FFFAF5;
     font-size: 12px; letter-spacing: 0.05em;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 24px rgba(39,42,45,0.35);
   }
   .taste-handle-line {
     position: absolute; top: 0; bottom: 0; left: 0;
-    width: 2px; background: rgba(243,241,234,0.95);
+    width: 2px; background: rgba(39,42,45,0.85);
     transform: translateX(-1px);
   }
   .taste-range {
@@ -168,17 +169,17 @@
   /* ---- Materials ---- */
   .material-swatch {
     height: 96px; border-radius: 16px;
-    box-shadow: inset 0 0 0 1px rgba(237,242,240,0.1);
+    box-shadow: inset 0 0 0 1px rgba(39,42,45,0.10);
   }
 
   /* ---- Configurator ---- */
   .finish-swatch {
     width: 100%; height: 64px; border-radius: 12px;
-    cursor: pointer; border: 1px solid rgba(237,242,240,0.12);
+    cursor: pointer; border: 1px solid rgba(39,42,45,0.14);
     transition: box-shadow 0.3s, transform 0.3s;
   }
   .finish-option.active .finish-swatch {
-    box-shadow: 0 0 0 2px #8FBFB2;
+    box-shadow: 0 0 0 2px #C1986C;
     transform: translateY(-2px);
   }
 
@@ -201,32 +202,32 @@
     padding: 16px 0;
     font-size: 15px;
     letter-spacing: 0.04em;
-    color: #F3F1EA;
-    border-top: 1px solid rgba(243,241,234,0.08);
+    color: #272A2D;
+    border-top: 1px solid rgba(39,42,45,0.10);
   }
 </style>
 </head>
 
-<body class="bg-ink text-ivory font-sans antialiased selection:bg-glacier selection:text-ink">
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-blue selection:text-cream">
 
 <div class="grain"></div>
 
 <!-- ============ NAV ============ -->
 <nav id="nav" class="fixed top-0 inset-x-0 z-50 transition-colors duration-500">
   <div class="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-10 py-6">
-    <a href="#" class="font-serif text-[15px] tracking-[0.28em] uppercase text-ivory">Perfect Filter</a>
-    <div class="hidden md:flex items-center gap-10 text-[13px] tracking-[0.08em] text-mist">
-      <a href="#showcase" class="hover:text-ivory transition-colors duration-300">Showcase</a>
-      <a href="#technology" class="hover:text-ivory transition-colors duration-300">Technology</a>
-      <a href="#configure" class="hover:text-ivory transition-colors duration-300">Configure</a>
+    <a href="#" class="font-serif text-[15px] tracking-[0.28em] uppercase text-charcoal">Perfect Filter</a>
+    <div class="hidden md:flex items-center gap-10 text-[13px] tracking-[0.08em] text-stone">
+      <a href="#showcase" class="hover:text-charcoal transition-colors duration-300">Showcase</a>
+      <a href="#technology" class="hover:text-charcoal transition-colors duration-300">Technology</a>
+      <a href="#configure" class="hover:text-charcoal transition-colors duration-300">Configure</a>
     </div>
     <div class="flex items-center gap-3">
       <button id="menuToggle" type="button" class="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 -mr-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span class="hamburger-line block w-5 h-[1.5px] bg-ivory"></span>
-        <span class="hamburger-line block w-5 h-[1.5px] bg-ivory"></span>
-        <span class="hamburger-line block w-5 h-[1.5px] bg-ivory"></span>
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
       </button>
-      <a href="#configure" class="magnetic inline-flex items-center gap-2 text-[13px] tracking-[0.06em] text-ink bg-ivory hover:bg-glacier px-5 py-2.5 rounded-full transition-colors duration-300">
+      <a href="#configure" class="magnetic inline-flex items-center gap-2 text-[13px] tracking-[0.06em] text-cream bg-charcoal hover:bg-gold hover:text-charcoal px-5 py-2.5 rounded-full transition-colors duration-300">
         Reserve
       </a>
     </div>
@@ -249,7 +250,7 @@
 
   <!-- logo mark, upper center -->
   <div class="reveal absolute top-24 md:top-28 inset-x-0 z-20 flex justify-center">
-    <div class="bg-ivory rounded-3xl shadow-2xl px-5 py-4 md:px-7 md:py-5">
+    <div class="bg-white rounded-3xl shadow-lg px-5 py-4 md:px-7 md:py-5">
       <img
         src="photos/logo.jpg"
         alt="Perfect Filter logo"
@@ -271,56 +272,56 @@
   </div>
 
   <div class="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 pb-20 md:pb-28">
-    <p class="reveal text-[12px] md:text-[13px] tracking-[0.32em] uppercase text-glacier mb-6">
+    <p class="reveal text-[12px] md:text-[13px] tracking-[0.32em] uppercase text-blue mb-6">
       Whole-Home Filtration, Reimagined
     </p>
 
-    <h1 class="reveal font-serif font-light text-[15vw] md:text-[7.5vw] leading-[0.95] tracking-[-0.02em] text-ivory max-w-[15ch]" style="--reveal-delay:80ms">
+    <h1 class="reveal font-serif font-light text-[15vw] md:text-[7.5vw] leading-[0.95] tracking-[-0.02em] text-charcoal max-w-[15ch]" style="--reveal-delay:80ms">
       Water,<br />
-      <span class="italic text-glacier">perfected.</span>
+      <span class="italic text-blue">perfected.</span>
     </h1>
 
-    <p class="reveal mt-8 md:mt-10 max-w-[46ch] text-[16px] md:text-[18px] leading-relaxed text-mist" style="--reveal-delay:180ms">
+    <p class="reveal mt-8 md:mt-10 max-w-[46ch] text-[16px] md:text-[18px] leading-relaxed text-stone" style="--reveal-delay:180ms">
       Twelve stages of molecular filtration, engineered into an object quiet
       enough to disappear into your home — and precise enough to change
       how your water tastes.
     </p>
 
     <div class="reveal mt-10 md:mt-12 flex flex-wrap items-center gap-5" style="--reveal-delay:280ms">
-      <a href="#configure" class="magnetic inline-flex items-center gap-2 bg-ivory text-ink text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-glacier transition-colors duration-300">
+      <a href="#configure" class="magnetic inline-flex items-center gap-2 bg-charcoal text-cream text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-gold hover:text-charcoal transition-colors duration-300">
         Configure yours
       </a>
-      <a href="#showcase" class="inline-flex items-center gap-2 text-[14px] tracking-[0.03em] text-ivory/80 hover:text-ivory border-b border-ivory/20 hover:border-ivory pb-1 transition-colors duration-300">
+      <a href="#showcase" class="inline-flex items-center gap-2 text-[14px] tracking-[0.03em] text-charcoal/75 hover:text-charcoal border-b border-charcoal/25 hover:border-charcoal pb-1 transition-colors duration-300">
         See how it works
       </a>
     </div>
   </div>
 
   <!-- scroll cue -->
-  <div class="absolute bottom-8 left-6 md:left-10 z-10 hidden md:flex items-center gap-3 text-mist">
-    <span class="block w-8 h-[1px] bg-mist/50"></span>
+  <div class="absolute bottom-8 left-6 md:left-10 z-10 hidden md:flex items-center gap-3 text-stone">
+    <span class="block w-8 h-[1px] bg-stone/60"></span>
     <span class="text-[11px] tracking-[0.2em] uppercase">Scroll</span>
   </div>
 </section>
 
 <!-- ============ MANIFESTO STRIP ============ -->
-<section class="relative border-t border-ivory/5 py-28 md:py-36">
+<section class="relative border-t border-charcoal/8 py-28 md:py-36">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10">
-    <p class="reveal font-serif font-light text-[7vw] md:text-[3.2vw] leading-[1.15] tracking-[-0.01em] max-w-[18ch] text-ivory/90">
+    <p class="reveal font-serif font-light text-[7vw] md:text-[3.2vw] leading-[1.15] tracking-[-0.01em] max-w-[18ch] text-charcoal/90">
       Every home has a water problem it has learned to ignore.
-      <span class="text-mist">We built the object that stops asking you to.</span>
+      <span class="text-stone">We built the object that stops asking you to.</span>
     </p>
   </div>
 </section>
 
 <!-- ============ PRODUCT SHOWCASE ============ -->
-<section id="showcase" class="relative border-t border-ivory/5">
+<section id="showcase" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
     <div class="reveal mb-16 md:mb-24 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">The Object</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">The Object</p>
       <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Four decisions,<br /><span class="italic text-mist">held to one standard.</span>
+        Four decisions,<br /><span class="italic text-stone">held to one standard.</span>
       </h2>
     </div>
 
@@ -346,11 +347,11 @@
       <div class="flex flex-col gap-16 lg:gap-20">
 
         <article class="reveal">
-          <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-3">Filtration</p>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-3">Filtration</p>
           <h3 class="font-serif font-light text-[26px] md:text-[32px] leading-tight mb-4">
             A twelve-stage cascade, tuned to 0.01 microns.
           </h3>
-          <p class="text-mist leading-relaxed max-w-[54ch]">
+          <p class="text-stone leading-relaxed max-w-[54ch]">
             Sediment, chlorine, heavy metals and microplastics are drawn out
             in sequence — not filtered away, refined out — leaving the
             mineral character of the water intact.
@@ -358,11 +359,11 @@
         </article>
 
         <article class="reveal" style="--reveal-delay:80ms">
-          <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-3">Materials</p>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-3">Materials</p>
           <h3 class="font-serif font-light text-[26px] md:text-[32px] leading-tight mb-4">
             Brushed stainless, cast glass, no visible seams.
           </h3>
-          <p class="text-mist leading-relaxed max-w-[54ch]">
+          <p class="text-stone leading-relaxed max-w-[54ch]">
             Every surface is chosen for how it ages — a matte, fingerprint-resistant
             finish that is machined, not moulded, and built to sit in view rather
             than be hidden under a sink.
@@ -370,22 +371,22 @@
         </article>
 
         <article class="reveal" style="--reveal-delay:160ms">
-          <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-3">Silence</p>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-3">Silence</p>
           <h3 class="font-serif font-light text-[26px] md:text-[32px] leading-tight mb-4">
             18 decibels — quieter than a library.
           </h3>
-          <p class="text-mist leading-relaxed max-w-[54ch]">
+          <p class="text-stone leading-relaxed max-w-[54ch]">
             The pump and valve assembly is isolated on a floating chassis,
             so filtration happens without a sound in the room it lives in.
           </p>
         </article>
 
         <article class="reveal" style="--reveal-delay:240ms">
-          <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-3">Footprint</p>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-3">Footprint</p>
           <h3 class="font-serif font-light text-[26px] md:text-[32px] leading-tight mb-4">
             One filter, replaced once a year.
           </h3>
-          <p class="text-mist leading-relaxed max-w-[54ch]">
+          <p class="text-stone leading-relaxed max-w-[54ch]">
             A single high-capacity cartridge replaces the plastic of roughly
             1,800 bottles annually — recyclable, and delivered before you
             need to ask.
@@ -398,29 +399,29 @@
 </section>
 
 <!-- ============ TECHNOLOGY ============ -->
-<section id="technology" class="relative border-t border-ivory/5">
+<section id="technology" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
     <div class="reveal mb-16 md:mb-20 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">The Cascade</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">The Cascade</p>
       <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Twelve stages.<br /><span class="italic text-mist">One uninterrupted pass.</span>
+        Twelve stages.<br /><span class="italic text-stone">One uninterrupted pass.</span>
       </h2>
     </div>
 
     <!-- stat row -->
-    <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 md:gap-12 mb-20 md:mb-28 pb-16 md:pb-20 border-b border-ivory/5">
+    <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 md:gap-12 mb-20 md:mb-28 pb-16 md:pb-20 border-b border-charcoal/8">
       <div>
-        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-ivory">0.01<span class="text-mist text-[0.4em] align-top ml-1">µm</span></p>
-        <p class="mt-3 text-[13px] text-mist tracking-[0.02em]">Membrane rejection size</p>
+        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-charcoal">0.01<span class="text-stone text-[0.4em] align-top ml-1">µm</span></p>
+        <p class="mt-3 text-[13px] text-stone tracking-[0.02em]">Membrane rejection size</p>
       </div>
       <div>
-        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-ivory">99.9<span class="text-mist text-[0.4em] align-top ml-1">%</span></p>
-        <p class="mt-3 text-[13px] text-mist tracking-[0.02em]">Contaminant reduction</p>
+        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-charcoal">99.9<span class="text-stone text-[0.4em] align-top ml-1">%</span></p>
+        <p class="mt-3 text-[13px] text-stone tracking-[0.02em]">Contaminant reduction</p>
       </div>
       <div>
-        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-ivory">150<span class="text-mist text-[0.4em] align-top ml-1">GPD</span></p>
-        <p class="mt-3 text-[13px] text-mist tracking-[0.02em]">Sustained flow rate</p>
+        <p class="font-serif text-[9vw] md:text-[3vw] leading-none text-charcoal">150<span class="text-stone text-[0.4em] align-top ml-1">GPD</span></p>
+        <p class="mt-3 text-[13px] text-stone tracking-[0.02em]">Sustained flow rate</p>
       </div>
     </div>
 
@@ -429,30 +430,30 @@
 
       <article class="reveal relative">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-2">Stages 1–3 · Pre-Filtration</p>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stages 1–3 · Pre-Filtration</p>
         <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">Sediment cleared before it can reach the membrane.</h3>
-        <p class="text-mist leading-relaxed max-w-[56ch]">Graduated mesh layers remove sand, rust and particulate — protecting every stage that follows and extending membrane life.</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">Graduated mesh layers remove sand, rust and particulate — protecting every stage that follows and extending membrane life.</p>
       </article>
 
       <article class="reveal relative" style="--reveal-delay:60ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-2">Stages 4–6 · Carbon Block</p>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stages 4–6 · Carbon Block</p>
         <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">Chlorine, VOCs and odor, bound and removed.</h3>
-        <p class="text-mist leading-relaxed max-w-[56ch]">A dense activated-carbon block adsorbs chemical taste and smell without stripping the water of character.</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">A dense activated-carbon block adsorbs chemical taste and smell without stripping the water of character.</p>
       </article>
 
       <article class="reveal relative" style="--reveal-delay:120ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-2">Stages 7–10 · RO Membrane</p>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stages 7–10 · RO Membrane</p>
         <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">A 0.01 micron pass for dissolved solids and metals.</h3>
-        <p class="text-mist leading-relaxed max-w-[56ch]">The reverse-osmosis membrane rejects lead, microplastics and dissolved salts most systems let through.</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">The reverse-osmosis membrane rejects lead, microplastics and dissolved salts most systems let through.</p>
       </article>
 
       <article class="reveal relative" style="--reveal-delay:180ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-glacier mb-2">Stages 11–12 · Remineralization</p>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stages 11–12 · Remineralization</p>
         <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">Calcium and magnesium, reintroduced.</h3>
-        <p class="text-mist leading-relaxed max-w-[56ch]">The final pass restores the minerals that give water its body — and brings pH back to a natural balance.</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">The final pass restores the minerals that give water its body — and brings pH back to a natural balance.</p>
       </article>
 
     </div>
@@ -460,28 +461,28 @@
 </section>
 
 <!-- ============ TASTE PROFILE ============ -->
-<section id="taste" class="relative border-t border-ivory/5">
+<section id="taste" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
     <div class="reveal mb-16 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">Taste Profile</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Taste Profile</p>
       <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Water, as it was<br /><span class="italic text-mist">meant to taste.</span>
+        Water, as it was<br /><span class="italic text-stone">meant to taste.</span>
       </h2>
-      <p class="mt-6 text-mist max-w-[54ch] leading-relaxed">
+      <p class="mt-6 text-stone max-w-[54ch] leading-relaxed">
         Drag the divider — the difference is measured in your glass, not on a data sheet.
       </p>
     </div>
 
     <div class="reveal taste-compare h-[340px] sm:h-[320px] md:h-[380px]" style="--split:50%">
-      <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-8 md:px-14 bg-slate2">
-        <p class="text-[11px] sm:text-[12px] tracking-[0.28em] uppercase text-mist mb-3">Municipal Tap</p>
-        <p class="font-serif text-[19px] sm:text-[24px] md:text-[32px] leading-snug text-ivory/70 max-w-[18ch] sm:max-w-[20ch]">Flat, faintly chlorinated, inconsistent from one week to the next.</p>
+      <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-8 md:px-14 bg-paper">
+        <p class="text-[11px] sm:text-[12px] tracking-[0.28em] uppercase text-stone mb-3">Municipal Tap</p>
+        <p class="font-serif text-[19px] sm:text-[24px] md:text-[32px] leading-snug text-charcoal/60 max-w-[18ch] sm:max-w-[20ch]">Flat, faintly chlorinated, inconsistent from one week to the next.</p>
       </div>
       <div class="taste-after">
-        <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-8 md:px-14" style="background:linear-gradient(135deg, #1E2724, #0C1210);">
-          <p class="text-[11px] sm:text-[12px] tracking-[0.28em] uppercase text-glacier mb-3">Perfect Filter</p>
-          <p class="font-serif text-[19px] sm:text-[24px] md:text-[32px] leading-snug text-ivory max-w-[18ch] sm:max-w-[20ch]">Clean, mineral-round, the same glass every single time.</p>
+        <div class="absolute inset-0 flex flex-col justify-center px-6 sm:px-8 md:px-14" style="background:linear-gradient(135deg, #DCEAF2, #FFFAF5);">
+          <p class="text-[11px] sm:text-[12px] tracking-[0.28em] uppercase text-blue mb-3">Perfect Filter</p>
+          <p class="font-serif text-[19px] sm:text-[24px] md:text-[32px] leading-snug text-charcoal max-w-[18ch] sm:max-w-[20ch]">Clean, mineral-round, the same glass every single time.</p>
         </div>
       </div>
       <div class="taste-handle">
@@ -494,76 +495,76 @@
 </section>
 
 <!-- ============ DESIGN & CRAFT ============ -->
-<section id="design" class="relative border-t border-ivory/5">
+<section id="design" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
     <div class="reveal mb-16 md:mb-20 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">Materials</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Materials</p>
       <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Chosen for how<br /><span class="italic text-mist">they age, not just how they arrive.</span>
+        Chosen for how<br /><span class="italic text-stone">they age, not just how they arrive.</span>
       </h2>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
       <div class="reveal">
         <div class="material-swatch" style="background:linear-gradient(120deg,#D8DBD6,#8A8F89 55%,#5C6159);"></div>
-        <p class="mt-4 text-[15px] text-ivory">Brushed Stainless</p>
-        <p class="mt-1 text-[13px] text-mist">Body &amp; housing</p>
+        <p class="mt-4 text-[15px] text-charcoal">Brushed Stainless</p>
+        <p class="mt-1 text-[13px] text-stone">Body &amp; housing</p>
       </div>
       <div class="reveal" style="--reveal-delay:60ms">
-        <div class="material-swatch" style="background:linear-gradient(120deg,rgba(243,241,234,0.5),rgba(143,191,178,0.25) 60%,rgba(30,39,36,0.6));"></div>
-        <p class="mt-4 text-[15px] text-ivory">Cast Glass</p>
-        <p class="mt-1 text-[13px] text-mist">Reservoir window</p>
+        <div class="material-swatch" style="background:linear-gradient(120deg,rgba(255,255,255,0.7),rgba(48,118,168,0.22) 60%,rgba(39,42,45,0.35) );"></div>
+        <p class="mt-4 text-[15px] text-charcoal">Cast Glass</p>
+        <p class="mt-1 text-[13px] text-stone">Reservoir window</p>
       </div>
       <div class="reveal" style="--reveal-delay:120ms">
         <div class="material-swatch" style="background:linear-gradient(120deg,#C9A876,#8C6F45 60%,#4E3B25);"></div>
-        <p class="mt-4 text-[15px] text-ivory">Anodized Brass</p>
-        <p class="mt-1 text-[13px] text-mist">Accent trim, optional</p>
+        <p class="mt-4 text-[15px] text-charcoal">Anodized Brass</p>
+        <p class="mt-1 text-[13px] text-stone">Accent trim, optional</p>
       </div>
       <div class="reveal" style="--reveal-delay:180ms">
         <div class="material-swatch" style="background:linear-gradient(120deg,#2A322E,#171F1D 70%);"></div>
-        <p class="mt-4 text-[15px] text-ivory">Aerospace Silicone</p>
-        <p class="mt-1 text-[13px] text-mist">Seals &amp; isolation mounts</p>
+        <p class="mt-4 text-[15px] text-charcoal">Aerospace Silicone</p>
+        <p class="mt-1 text-[13px] text-stone">Seals &amp; isolation mounts</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ ECO-LUXURY ============ -->
-<section id="eco" class="relative border-t border-ivory/5">
+<section id="eco" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36 grid lg:grid-cols-2 gap-16">
     <div class="reveal">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">Eco-Luxury</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Eco-Luxury</p>
       <h2 class="font-serif font-light text-[9vw] sm:text-[6vw] lg:text-[3.4vw] leading-[1.1] tracking-[-0.01em] max-w-[14ch]">
         Restraint is the real luxury.
       </h2>
-      <p class="mt-6 text-mist max-w-[48ch] leading-relaxed">
+      <p class="mt-6 text-stone max-w-[48ch] leading-relaxed">
         No cases of plastic delivered to your door. No filters shipped before
         they're needed. One cartridge, engineered to last a full year.
       </p>
     </div>
     <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-10 content-center" style="--reveal-delay:100ms">
       <div>
-        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-ivory" data-count-to="1800">0</p>
-        <p class="mt-3 text-[13px] text-mist">Bottles offset, per year</p>
+        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-charcoal" data-count-to="1800">0</p>
+        <p class="mt-3 text-[13px] text-stone">Bottles offset, per year</p>
       </div>
       <div>
-        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-ivory"><span data-count-to="92">0</span>%</p>
-        <p class="mt-3 text-[13px] text-mist">Less plastic than bottled water</p>
+        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-charcoal"><span data-count-to="92">0</span>%</p>
+        <p class="mt-3 text-[13px] text-stone">Less plastic than bottled water</p>
       </div>
       <div>
-        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-ivory"><span data-count-to="100">0</span>%</p>
-        <p class="mt-3 text-[13px] text-mist">Cartridge, recyclable</p>
+        <p class="counter font-serif text-[13vw] sm:text-[8vw] lg:text-[3vw] leading-none text-charcoal"><span data-count-to="100">0</span>%</p>
+        <p class="mt-3 text-[13px] text-stone">Cartridge, recyclable</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ PRESS / TRUST ============ -->
-<section class="relative border-t border-ivory/5">
+<section class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-24">
-    <p class="reveal text-center text-[11px] tracking-[0.3em] uppercase text-mist mb-10">As Featured In</p>
-    <div class="reveal flex flex-wrap items-center justify-center gap-x-14 gap-y-6 text-ivory/40 font-serif text-[18px] md:text-[20px] tracking-wide">
+    <p class="reveal text-center text-[11px] tracking-[0.3em] uppercase text-stone mb-10">As Featured In</p>
+    <div class="reveal flex flex-wrap items-center justify-center gap-x-14 gap-y-6 text-charcoal/35 font-serif text-[18px] md:text-[20px] tracking-wide">
       <span>Design Quarterly</span>
       <span>The Modern Home Journal</span>
       <span>Kitchen &amp; Bath Review</span>
@@ -571,22 +572,22 @@
     </div>
 
     <blockquote class="reveal mt-20 max-w-[62ch] mx-auto text-center">
-      <p class="font-serif italic font-light text-[24px] md:text-[30px] leading-snug text-ivory/90">
+      <p class="font-serif italic font-light text-[24px] md:text-[30px] leading-snug text-charcoal/90">
         "It's the first appliance I've bought that I actually want visible on the counter."
       </p>
-      <footer class="mt-6 text-[13px] tracking-[0.05em] text-mist">— Early Access Customer, San Francisco</footer>
+      <footer class="mt-6 text-[13px] tracking-[0.05em] text-stone">— Early Access Customer, San Francisco</footer>
     </blockquote>
   </div>
 </section>
 
 <!-- ============ CONFIGURATOR ============ -->
-<section id="configure" class="relative border-t border-ivory/5">
+<section id="configure" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
     <div class="reveal mb-16 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-glacier mb-5">Configure</p>
+      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Configure</p>
       <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Choose a finish.<br /><span class="italic text-mist">The engineering stays the same.</span>
+        Choose a finish.<br /><span class="italic text-stone">The engineering stays the same.</span>
       </h2>
     </div>
 
@@ -594,69 +595,69 @@
       <div class="grid grid-cols-3 gap-5 max-w-md">
         <button type="button" class="finish-option active text-left" data-price="2400" data-name="Brushed Steel">
           <span class="finish-swatch block" style="background:linear-gradient(135deg,#D8DBD6,#8A8F89 55%,#5C6159);"></span>
-          <span class="block mt-3 text-[13px] text-ivory">Brushed Steel</span>
+          <span class="block mt-3 text-[13px] text-charcoal">Brushed Steel</span>
         </button>
         <button type="button" class="finish-option text-left" data-price="2600" data-name="Matte Graphite">
           <span class="finish-swatch block" style="background:linear-gradient(135deg,#3A413E,#171F1D 70%);"></span>
-          <span class="block mt-3 text-[13px] text-ivory">Matte Graphite</span>
+          <span class="block mt-3 text-[13px] text-charcoal">Matte Graphite</span>
         </button>
         <button type="button" class="finish-option text-left" data-price="2900" data-name="Warm Brass">
           <span class="finish-swatch block" style="background:linear-gradient(135deg,#C9A876,#8C6F45 60%,#4E3B25);"></span>
-          <span class="block mt-3 text-[13px] text-ivory">Warm Brass</span>
+          <span class="block mt-3 text-[13px] text-charcoal">Warm Brass</span>
         </button>
       </div>
 
       <div class="glass rounded-[24px] p-8 md:p-10">
-        <p class="text-[13px] tracking-[0.05em] text-mist mb-1">Perfect Filter — <span id="finishName">Brushed Steel</span></p>
-        <p class="font-serif text-[42px] md:text-[52px] leading-none text-ivory mb-8">$<span id="finishPrice" class="counter">2,400</span></p>
-        <a href="#" class="magnetic inline-flex w-full items-center justify-center gap-2 bg-ivory text-ink text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-glacier transition-colors duration-300">
+        <p class="text-[13px] tracking-[0.05em] text-stone mb-1">Perfect Filter — <span id="finishName">Brushed Steel</span></p>
+        <p class="font-serif text-[42px] md:text-[52px] leading-none text-charcoal mb-8">$<span id="finishPrice" class="counter">2,400</span></p>
+        <a href="#" class="magnetic inline-flex w-full items-center justify-center gap-2 bg-charcoal text-cream text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-gold hover:text-charcoal transition-colors duration-300">
           Reserve — fully refundable
         </a>
-        <p class="mt-4 text-[12px] text-mist">$100 deposit. Ships in 6–8 weeks.</p>
+        <p class="mt-4 text-[12px] text-stone">$100 deposit. Ships in 6–8 weeks.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="relative border-t border-ivory/5">
+<footer class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-20 pb-10">
     <div class="grid sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-x-8 gap-y-12 lg:gap-8">
       <div class="sm:col-span-2 lg:col-span-1">
-        <p class="font-serif text-[15px] tracking-[0.28em] uppercase text-ivory mb-4">Perfect Filter</p>
-        <p class="text-mist text-[14px] leading-relaxed max-w-[32ch]">Whole-home filtration, engineered as an object worth keeping in view.</p>
+        <p class="font-serif text-[15px] tracking-[0.28em] uppercase text-charcoal mb-4">Perfect Filter</p>
+        <p class="text-stone text-[14px] leading-relaxed max-w-[32ch]">Whole-home filtration, engineered as an object worth keeping in view.</p>
       </div>
       <div>
-        <p class="text-[12px] tracking-[0.2em] uppercase text-mist mb-4">Product</p>
-        <ul class="flex flex-col gap-3 text-[14px] text-ivory/80">
-          <li><a href="#showcase" class="hover:text-ivory">Showcase</a></li>
-          <li><a href="#technology" class="hover:text-ivory">Technology</a></li>
-          <li><a href="#configure" class="hover:text-ivory">Configure</a></li>
+        <p class="text-[12px] tracking-[0.2em] uppercase text-stone mb-4">Product</p>
+        <ul class="flex flex-col gap-3 text-[14px] text-charcoal/80">
+          <li><a href="#showcase" class="hover:text-charcoal">Showcase</a></li>
+          <li><a href="#technology" class="hover:text-charcoal">Technology</a></li>
+          <li><a href="#configure" class="hover:text-charcoal">Configure</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-[12px] tracking-[0.2em] uppercase text-mist mb-4">Company</p>
-        <ul class="flex flex-col gap-3 text-[14px] text-ivory/80">
-          <li><a href="#" class="hover:text-ivory">About</a></li>
-          <li><a href="#" class="hover:text-ivory">Press</a></li>
-          <li><a href="#" class="hover:text-ivory">Contact</a></li>
+        <p class="text-[12px] tracking-[0.2em] uppercase text-stone mb-4">Company</p>
+        <ul class="flex flex-col gap-3 text-[14px] text-charcoal/80">
+          <li><a href="#" class="hover:text-charcoal">About</a></li>
+          <li><a href="#" class="hover:text-charcoal">Press</a></li>
+          <li><a href="#" class="hover:text-charcoal">Contact</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-[12px] tracking-[0.2em] uppercase text-mist mb-4">Stay Informed</p>
-        <form id="newsletterForm" class="flex items-center gap-2 border-b border-ivory/20 pb-2 focus-within:border-ivory transition-colors">
-          <input type="email" required placeholder="you@email.com" class="bg-transparent outline-none text-[14px] text-ivory placeholder:text-mist flex-1" />
-          <button type="submit" class="text-[13px] text-glacier hover:text-ivory transition-colors">Join</button>
+        <p class="text-[12px] tracking-[0.2em] uppercase text-stone mb-4">Stay Informed</p>
+        <form id="newsletterForm" class="flex items-center gap-2 border-b border-charcoal/25 pb-2 focus-within:border-charcoal transition-colors">
+          <input type="email" required placeholder="you@email.com" class="bg-transparent outline-none text-[14px] text-charcoal placeholder:text-stone flex-1" />
+          <button type="submit" class="text-[13px] text-blue hover:text-charcoal transition-colors">Join</button>
         </form>
-        <p id="newsletterNote" class="mt-2 text-[12px] text-mist"></p>
+        <p id="newsletterNote" class="mt-2 text-[12px] text-stone"></p>
       </div>
     </div>
 
-    <div class="mt-20 pt-8 border-t border-ivory/5 flex flex-wrap items-center justify-between gap-4 text-[12px] text-mist">
+    <div class="mt-20 pt-8 border-t border-charcoal/8 flex flex-wrap items-center justify-between gap-4 text-[12px] text-stone">
       <p>© 2026 Perfect Filter. All rights reserved.</p>
       <div class="flex items-center gap-6">
-        <a href="#" class="hover:text-ivory">Privacy</a>
-        <a href="#" class="hover:text-ivory">Terms</a>
+        <a href="#" class="hover:text-charcoal">Privacy</a>
+        <a href="#" class="hover:text-charcoal">Terms</a>
       </div>
     </div>
   </div>
@@ -670,9 +671,9 @@
   const onScroll = () => {
     const shouldBlur = window.scrollY > 60 || (mobileMenu && mobileMenu.classList.contains('open'));
     if (shouldBlur) {
-      nav.classList.add('nav-blur', 'bg-ink/70', 'border-b', 'border-ivory/5');
+      nav.classList.add('nav-blur', 'bg-cream/80', 'border-b', 'border-charcoal/8');
     } else {
-      nav.classList.remove('nav-blur', 'bg-ink/70', 'border-b', 'border-ivory/5');
+      nav.classList.remove('nav-blur', 'bg-cream/80', 'border-b', 'border-charcoal/8');
     }
   };
   document.addEventListener('scroll', onScroll, { passive: true });
