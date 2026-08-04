@@ -185,6 +185,14 @@
 
   .counter { font-variant-numeric: tabular-nums; }
 
+  /* ---- Manifesto video ---- */
+  .video-frame {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px -20px rgba(39,42,45,0.35);
+  }
+
   /* ---- Mobile nav ---- */
   .hamburger-line { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s; transform-origin: center; }
   #menuToggle.open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -311,6 +319,37 @@
       Every home has a water problem it has learned to ignore.
       <span class="text-stone">We built the object that stops asking you to.</span>
     </p>
+
+    <div class="reveal mt-14 md:mt-16" style="--reveal-delay:120ms">
+      <div class="video-frame aspect-video">
+        <video
+          id="manifestoVideo"
+          src="VIDEOS/0805.mp4"
+          class="w-full h-full object-cover"
+          muted
+          loop
+          playsinline
+          preload="none"
+        ></video>
+        <button
+          id="videoMuteToggle"
+          type="button"
+          aria-label="Unmute video"
+          class="absolute bottom-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-charcoal/70 text-cream backdrop-blur-sm hover:bg-charcoal transition-colors duration-300"
+        >
+          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="icon-unmuted hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -718,6 +757,30 @@
       const x = (e.clientX / window.innerWidth - 0.5) * 14;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
       parallax.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+
+  // manifesto video: only fetch/play once scrolled into view, pause when scrolled away
+  const manifestoVideo = document.getElementById('manifestoVideo');
+  const videoMuteToggle = document.getElementById('videoMuteToggle');
+  if (manifestoVideo) {
+    const videoIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          manifestoVideo.play().catch(() => {});
+        } else {
+          manifestoVideo.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+    videoIO.observe(manifestoVideo);
+  }
+  if (videoMuteToggle && manifestoVideo) {
+    videoMuteToggle.addEventListener('click', () => {
+      manifestoVideo.muted = !manifestoVideo.muted;
+      videoMuteToggle.querySelector('.icon-muted').classList.toggle('hidden', !manifestoVideo.muted);
+      videoMuteToggle.querySelector('.icon-unmuted').classList.toggle('hidden', manifestoVideo.muted);
+      videoMuteToggle.setAttribute('aria-label', manifestoVideo.muted ? 'Unmute video' : 'Mute video');
     });
   }
 
