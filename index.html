@@ -199,6 +199,7 @@
     border-radius: 28px;
     overflow: hidden;
     box-shadow: 0 30px 70px -20px rgba(39,42,45,0.35);
+    background: #1E2724;
   }
 
   /* ---- Mobile nav ---- */
@@ -335,11 +336,11 @@
         <video
           id="manifestoVideo"
           src="VIDEOS/0805.mp4"
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover cursor-pointer"
           muted
           loop
           playsinline
-          preload="none"
+          preload="metadata"
         ></video>
         <button
           id="videoMuteToggle"
@@ -962,6 +963,13 @@
       videoMuteToggle.querySelector('.icon-muted').classList.toggle('hidden', !manifestoVideo.muted);
       videoMuteToggle.querySelector('.icon-unmuted').classList.toggle('hidden', manifestoVideo.muted);
       videoMuteToggle.setAttribute('aria-label', manifestoVideo.muted ? 'Unmute video' : 'Mute video');
+    });
+  }
+  if (manifestoVideo) {
+    // manual fallback: if autoplay was blocked (some mobile browsers), tapping the video starts/pauses it
+    manifestoVideo.addEventListener('click', () => {
+      if (manifestoVideo.paused) manifestoVideo.play().catch(() => {});
+      else manifestoVideo.pause();
     });
   }
 
