@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery — Perfect Filter</title>
+<meta name="description" content="Perfect Filter photo gallery." />
+<link rel="icon" type="image/jpeg" href="photos/logo.jpg" />
+<link rel="apple-touch-icon" href="photos/logo.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream:     '#FFFAF5',
+          paper:     '#F2ECE0',
+          charcoal:  '#272A2D',
+          blue:      '#3076A8',
+          blueDeep:  '#1F4E70',
+          gold:      '#C1986C',
+          goldDeep:  '#8D6435',
+          stone:     '#7A7A7A',
+          pewter:  '#B7BDB6',
+          pewterDeep: '#6E756E',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          sans:  ['Inter', '-apple-system', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root { color-scheme: light; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { background: #FFFAF5; font-feature-settings: "tnum" 1; }
+
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 60;
+    opacity: 0.035; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .nav-blur { backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); }
+
+  .magnetic { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); will-change: transform; }
+
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---- Mobile nav (shared with index.html) ---- */
+  .hamburger-line { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s; transform-origin: center; }
+  #menuToggle.open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  #menuToggle.open .hamburger-line:nth-child(2) { opacity: 0; }
+  #menuToggle.open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .mobile-menu.open { max-height: 320px; }
+  .mobile-menu-link {
+    display: block; padding: 16px 0; font-size: 15px; letter-spacing: 0.04em;
+    color: #272A2D; border-top: 1px solid rgba(39,42,45,0.10);
+  }
+
+  /* ---- Gallery grid ---- */
+  .gallery-grid { column-gap: 1rem; }
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
+    background: #F2ECE0;
+    cursor: zoom-in;
+    border: none;
+    padding: 0;
+  }
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .gallery-item:hover img { transform: scale(1.03); }
+
+  /* ---- Lightbox ---- */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(20, 22, 24, 0.92);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #lightbox.open { opacity: 1; pointer-events: auto; }
+  #lightbox img {
+    max-width: min(90vw, 1100px);
+    max-height: 86vh;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .lightbox-btn {
+    position: absolute;
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    color: #FFFAF5;
+    transition: background-color 0.25s;
+  }
+  .lightbox-btn:hover { background: rgba(255,255,255,0.22); }
+</style>
+</head>
+
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-blue selection:text-cream">
+
+<div class="grain"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 transition-colors duration-500">
+  <div class="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-10 py-6">
+    <a href="index.html" class="font-serif text-[15px] tracking-[0.28em] uppercase text-charcoal">Perfect Filter</a>
+    <div class="hidden md:flex items-center gap-10 text-[13px] tracking-[0.08em] text-stone">
+      <a href="index.html#showcase" class="hover:text-charcoal transition-colors duration-300">Showcase</a>
+      <a href="index.html#technology" class="hover:text-charcoal transition-colors duration-300">Technology</a>
+      <a href="gallery.html" class="text-charcoal">Gallery</a>
+      <a href="index.html#configure" class="hover:text-charcoal transition-colors duration-300">Configure</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="menuToggle" type="button" class="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 -mr-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
+        <span class="hamburger-line block w-5 h-[1.5px] bg-charcoal"></span>
+      </button>
+      <a href="index.html#configure" class="magnetic inline-flex items-center gap-2 text-[13px] tracking-[0.06em] text-cream bg-charcoal hover:bg-gold hover:text-charcoal px-5 py-2.5 rounded-full transition-colors duration-300">
+        Reserve
+      </a>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <div class="max-w-[1400px] mx-auto px-6 pb-4 flex flex-col">
+      <a href="index.html#showcase" class="mobile-menu-link">Showcase</a>
+      <a href="index.html#technology" class="mobile-menu-link">Technology</a>
+      <a href="gallery.html" class="mobile-menu-link">Gallery</a>
+      <a href="index.html#configure" class="mobile-menu-link">Configure</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header class="relative pt-40 md:pt-48 pb-16 md:pb-20">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="reveal text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Gallery</p>
+    <h1 class="reveal font-serif font-light text-[11vw] md:text-[5vw] leading-[1.02] tracking-[-0.01em] max-w-[16ch]">
+      A look behind<br /><span class="italic text-stone">the finish.</span>
+    </h1>
+  </div>
+</header>
+
+<!-- ============ GALLERY GRID ============ -->
+<section class="relative pb-28 md:pb-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div id="galleryGrid" class="gallery-grid columns-1 sm:columns-2 lg:columns-3">
+      <!-- items injected below -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative border-t border-charcoal/8">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 pt-20 pb-10">
+    <div class="flex flex-wrap items-center justify-between gap-4 text-[12px] text-stone">
+      <p>© 2026 Perfect Filter. All rights reserved.</p>
+      <a href="index.html" class="hover:text-charcoal">Back to home</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lightboxClose" type="button" class="lightbox-btn" style="top:20px; right:20px;" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <button id="lightboxPrev" type="button" class="lightbox-btn" style="left:20px; top:50%; transform:translateY(-50%);" aria-label="Previous image">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+  <button id="lightboxNext" type="button" class="lightbox-btn" style="right:20px; top:50%; transform:translateY(-50%);" aria-label="Next image">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  // nav: transparent -> frosted glass on scroll (or whenever the mobile menu is open)
+  const nav = document.getElementById('nav');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuToggle = document.getElementById('menuToggle');
+  const onScroll = () => {
+    const shouldBlur = window.scrollY > 60 || (mobileMenu && mobileMenu.classList.contains('open'));
+    if (shouldBlur) {
+      nav.classList.add('nav-blur', 'bg-cream/80', 'border-b', 'border-charcoal/8');
+    } else {
+      nav.classList.remove('nav-blur', 'bg-cream/80', 'border-b', 'border-charcoal/8');
+    }
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+
+  if (menuToggle && mobileMenu) {
+    const closeMobileMenu = () => {
+      mobileMenu.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      onScroll();
+    };
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.classList.toggle('open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      onScroll();
+    });
+    mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMobileMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) closeMobileMenu();
+    });
+  }
+
+  document.querySelectorAll('.magnetic').forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.25;
+      const y = (e.clientY - r.top - r.height / 2) * 0.25;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+  });
+
+  // ---- Gallery images ----
+  const galleryFiles = [
+    "01defc38-baf3-4652-b71f-0b666d259d3d.jpg",
+    "06db9cf7-22b7-4e0a-a91a-87192fa88efe.jpg",
+    "09d13e3e-40ea-4762-9c03-41737f1e4add.jpg",
+    "165da6f9-7953-4257-9065-81a63514ed4e.jpg",
+    "1734eda3-de86-4665-98dd-c128271e8de5.jpg",
+    "17defdb9-f2ca-4731-8dad-0e0173571dfb.jpg",
+    "1db604c0-1684-410f-9724-57b00a1660ff.jpg",
+    "38d52891-174b-47f6-8f5b-e5b22f3dbbcd.jpg",
+    "417941db-b2a7-4679-816b-be4f32dacee0.jpg",
+    "4656418c-af4d-44f6-af3e-57af291196d8.jpg",
+    "49c43e38-58d9-4291-b0ae-722503dc0cf7.jpg",
+    "698e979b-6422-4af6-b40f-4bb780b20b5b.jpg",
+    "90ff408d-197a-4946-9120-879bc365a6dd.jpg",
+    "943a599d-d0f8-43c6-831c-7ab40c66d6fa.jpg",
+    "9b7187ea-6da3-41f8-9367-7b0a2a1e88c2.jpg",
+    "a51acff6-b447-439f-a9a9-8642d1c20465.jpg",
+    "a5ead722-df26-47af-9e52-e67f5937fc1e.jpg",
+    "b36a6b56-2a60-4ae0-8201-df9313e52d9f.jpg",
+    "b6f9b819-b75b-4f05-836c-6df881a27a91.jpg",
+    "bffe41bd-26c2-41ca-b8fb-5ee66dd30fca.jpg",
+    "e1f4b40a-3af1-4151-b111-4ddba6e5832f.jpg",
+    "e5bd51d4-7caa-42a3-aa4d-a3a64bffc064.jpg",
+    "eaf1b709-cd3c-48fb-a1d4-d9692c1b6273.jpg",
+    "ecc8a2ad-6e34-41a2-9576-21e107d7ec4e.jpg",
+    "ed5a1111-edb7-4a1c-bdf5-48dc14b2a000.jpg",
+    "ee171f4b-90bd-411c-8dff-a640ec3acbf2.jpg",
+    "f24a460e-9aa1-47e4-9a3b-e7b4d41e5bde.jpg",
+    "fb4bb678-7ba7-45b1-a340-4a54e75d6c5b.jpg",
+    "fbe7a4b0-e789-4455-b66e-3fc034f4f415.jpg",
+  ];
+
+  const grid = document.getElementById('galleryGrid');
+  galleryFiles.forEach((file, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'gallery-item reveal';
+    btn.style.setProperty('--reveal-delay', `${(i % 6) * 60}ms`);
+    btn.dataset.index = String(i);
+    btn.innerHTML = `<img src="photos/${file}" alt="Gallery photo ${i + 1}" loading="lazy" />`;
+    grid.appendChild(btn);
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach((el) => io.observe(el));
+
+  // ---- Lightbox ----
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  let currentIndex = 0;
+
+  const showImage = (index) => {
+    currentIndex = (index + galleryFiles.length) % galleryFiles.length;
+    lightboxImg.src = `photos/${galleryFiles[currentIndex]}`;
+    lightboxImg.alt = `Gallery photo ${currentIndex + 1}`;
+  };
+  const openLightbox = (index) => {
+    showImage(index);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  grid.addEventListener('click', (e) => {
+    const item = e.target.closest('.gallery-item');
+    if (item) openLightbox(Number(item.dataset.index));
+  });
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => showImage(currentIndex - 1));
+  document.getElementById('lightboxNext').addEventListener('click', () => showImage(currentIndex + 1));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+    if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+  });
+</script>
+
+</body>
+</html>
