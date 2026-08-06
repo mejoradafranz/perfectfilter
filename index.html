@@ -185,14 +185,13 @@
 
   .counter { font-variant-numeric: tabular-nums; }
 
-  /* ---- How It Works step photos ---- */
+  /* ---- How It Works step photos (shown uncropped, at natural aspect ratio) ---- */
   .step-photo {
-    aspect-ratio: 3 / 2;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
   }
-  .step-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .step-photo img { width: 100%; height: auto; display: block; }
 
   /* ---- Manifesto video ---- */
   .video-frame {
@@ -464,7 +463,7 @@
       <article class="reveal relative flex flex-col md:flex-row md:flex-row-reverse items-center gap-6 md:gap-10">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
         <div class="step-photo w-full md:w-[300px] shrink-0">
-          <img src="photos/step-1-water-test.jpg" width="480" height="320" loading="lazy"
+          <img src="photos/step1.jpg" width="1266" height="768" loading="lazy"
             alt="A technician and homeowner holding a glass of water during an on-site water test" />
         </div>
         <div>
@@ -477,7 +476,7 @@
       <article class="reveal relative flex flex-col md:flex-row items-center gap-6 md:gap-10" style="--reveal-delay:80ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
         <div class="step-photo w-full md:w-[300px] shrink-0">
-          <img src="photos/step-2-system-matching.jpg" width="480" height="320" loading="lazy"
+          <img src="photos/step2.jpg" width="1266" height="768" loading="lazy"
             alt="A technician showing a homeowner a personalized water system recommendation on a tablet" />
         </div>
         <div>
@@ -490,7 +489,7 @@
       <article class="reveal relative flex flex-col md:flex-row md:flex-row-reverse items-center gap-6 md:gap-10" style="--reveal-delay:160ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
         <div class="step-photo w-full md:w-[300px] shrink-0">
-          <img src="photos/step-3-installation.jpg" width="480" height="320" loading="lazy"
+          <img src="photos/step3.jpg" width="1273" height="768" loading="lazy"
             alt="A technician installing an under-sink water filtration unit" />
         </div>
         <div>
