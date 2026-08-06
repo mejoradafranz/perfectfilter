@@ -185,6 +185,15 @@
 
   .counter { font-variant-numeric: tabular-nums; }
 
+  /* ---- How It Works step photos ---- */
+  .step-photo {
+    aspect-ratio: 3 / 2;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
+  }
+  .step-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
   /* ---- Manifesto video ---- */
   .video-frame {
     position: relative;
@@ -452,25 +461,43 @@
 
     <div class="stage-line flex flex-col gap-14 md:gap-16 pl-10 md:pl-14 mb-20 md:mb-24">
 
-      <article class="reveal relative">
+      <article class="reveal relative flex flex-col md:flex-row md:flex-row-reverse items-center gap-6 md:gap-10">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 1 · Free Water Test</p>
-        <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">A technician tests your water, on-site, at no cost.</h3>
-        <p class="text-stone leading-relaxed max-w-[56ch]">No pressure, no obligation — just a clear read on exactly what's in your water before anyone talks about a system.</p>
+        <div class="step-photo w-full md:w-[300px] shrink-0">
+          <img src="photos/step-1-water-test.jpg" width="480" height="320" loading="lazy"
+            alt="A technician and homeowner holding a glass of water during an on-site water test" />
+        </div>
+        <div>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 1 · Free Water Test</p>
+          <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">A technician tests your water, on-site, at no cost.</h3>
+          <p class="text-stone leading-relaxed max-w-[56ch]">No pressure, no obligation — just a clear read on exactly what's in your water before anyone talks about a system.</p>
+        </div>
       </article>
 
-      <article class="reveal relative" style="--reveal-delay:80ms">
+      <article class="reveal relative flex flex-col md:flex-row items-center gap-6 md:gap-10" style="--reveal-delay:80ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 2 · System Matching</p>
-        <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">A recommendation based on your results, not a sales script.</h3>
-        <p class="text-stone leading-relaxed max-w-[56ch]">We match the configuration and finish to what your home actually needs — and what it doesn't.</p>
+        <div class="step-photo w-full md:w-[300px] shrink-0">
+          <img src="photos/step-2-system-matching.jpg" width="480" height="320" loading="lazy"
+            alt="A technician showing a homeowner a personalized water system recommendation on a tablet" />
+        </div>
+        <div>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 2 · System Matching</p>
+          <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">A recommendation based on your results, not a sales script.</h3>
+          <p class="text-stone leading-relaxed max-w-[56ch]">We match the configuration and finish to what your home actually needs — and what it doesn't.</p>
+        </div>
       </article>
 
-      <article class="reveal relative" style="--reveal-delay:160ms">
+      <article class="reveal relative flex flex-col md:flex-row md:flex-row-reverse items-center gap-6 md:gap-10" style="--reveal-delay:160ms">
         <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 3 · Installation &amp; Lifetime Service</p>
-        <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">Professionally installed, then supported for as long as you own it.</h3>
-        <p class="text-stone leading-relaxed max-w-[56ch]">Our team handles setup start to finish, and stays reachable for service long after installation day.</p>
+        <div class="step-photo w-full md:w-[300px] shrink-0">
+          <img src="photos/step-3-installation.jpg" width="480" height="320" loading="lazy"
+            alt="A technician installing an under-sink water filtration unit" />
+        </div>
+        <div>
+          <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Step 3 · Installation &amp; Lifetime Service</p>
+          <h3 class="font-serif font-light text-[22px] md:text-[26px] leading-snug mb-2">Professionally installed, then supported for as long as you own it.</h3>
+          <p class="text-stone leading-relaxed max-w-[56ch]">Our team handles setup start to finish, and stays reachable for service long after installation day.</p>
+        </div>
       </article>
 
     </div>
