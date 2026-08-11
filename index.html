@@ -193,13 +193,9 @@
   }
   .step-photo img { width: 100%; height: auto; display: block; }
 
-  /* ---- Manifesto video ---- */
-  .video-frame {
-    position: relative;
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 30px 70px -20px rgba(39,42,45,0.35);
-    background: #1E2724;
+  /* ---- Video intro header ---- */
+  .intro-scrim-top {
+    background: linear-gradient(180deg, rgba(255,250,245,0.75), rgba(255,250,245,0) 100%);
   }
 
   /* ---- Mobile nav ---- */
@@ -260,6 +256,46 @@
     </div>
   </div>
 </nav>
+
+<!-- ============ VIDEO INTRO ============ -->
+<section class="relative h-[100svh] overflow-hidden bg-charcoal">
+  <video
+    id="introVideo"
+    src="VIDEOS/0805.mp4"
+    class="absolute inset-0 w-full h-full object-cover cursor-pointer"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  ></video>
+
+  <!-- light scrim so the nav's dark text stays legible over any part of the video -->
+  <div class="intro-scrim-top absolute inset-x-0 top-0 h-40 pointer-events-none"></div>
+
+  <button
+    id="introMuteToggle"
+    type="button"
+    aria-label="Unmute video"
+    class="absolute bottom-8 right-6 md:right-10 z-10 flex items-center justify-center w-11 h-11 rounded-full bg-charcoal/60 text-cream backdrop-blur-sm hover:bg-charcoal transition-colors duration-300"
+  >
+    <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg class="icon-unmuted hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+  </button>
+
+  <div class="absolute bottom-8 left-6 md:left-10 z-10 flex items-center gap-3 bg-charcoal/60 backdrop-blur-sm text-cream px-4 py-2 rounded-full">
+    <span class="block w-6 h-[1px] bg-cream/70"></span>
+    <span class="text-[11px] tracking-[0.2em] uppercase">Scroll</span>
+  </div>
+</section>
 
 <!-- ============ HERO ============ -->
 <section class="relative min-h-[100svh] flex items-end overflow-hidden">
@@ -331,37 +367,6 @@
       Every home has a water problem it has learned to ignore.
       <span class="text-stone">We built the object that stops asking you to.</span>
     </p>
-
-    <div class="reveal mt-14 md:mt-16" style="--reveal-delay:120ms">
-      <div class="video-frame aspect-video">
-        <video
-          id="manifestoVideo"
-          src="VIDEOS/0805.mp4"
-          class="w-full h-full object-cover cursor-pointer"
-          muted
-          loop
-          playsinline
-          preload="metadata"
-        ></video>
-        <button
-          id="videoMuteToggle"
-          type="button"
-          aria-label="Unmute video"
-          class="absolute bottom-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-charcoal/70 text-cream backdrop-blur-sm hover:bg-charcoal transition-colors duration-300"
-        >
-          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-          </svg>
-          <svg class="icon-unmuted hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -950,34 +955,24 @@
     });
   }
 
-  // manifesto video: only fetch/play once scrolled into view, pause when scrolled away
-  const manifestoVideo = document.getElementById('manifestoVideo');
-  const videoMuteToggle = document.getElementById('videoMuteToggle');
-  if (manifestoVideo) {
-    const videoIO = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          manifestoVideo.play().catch(() => {});
-        } else {
-          manifestoVideo.pause();
-        }
-      });
-    }, { threshold: 0.35 });
-    videoIO.observe(manifestoVideo);
-  }
-  if (videoMuteToggle && manifestoVideo) {
-    videoMuteToggle.addEventListener('click', () => {
-      manifestoVideo.muted = !manifestoVideo.muted;
-      videoMuteToggle.querySelector('.icon-muted').classList.toggle('hidden', !manifestoVideo.muted);
-      videoMuteToggle.querySelector('.icon-unmuted').classList.toggle('hidden', manifestoVideo.muted);
-      videoMuteToggle.setAttribute('aria-label', manifestoVideo.muted ? 'Unmute video' : 'Mute video');
+  // intro video header: plays immediately (it's the first thing visible on load)
+  const introVideo = document.getElementById('introVideo');
+  const introMuteToggle = document.getElementById('introMuteToggle');
+  if (introVideo) {
+    // some mobile browsers ignore the autoplay attribute until a JS play() call
+    introVideo.play().catch(() => {});
+    // manual fallback: if autoplay was blocked entirely, tapping the video starts/pauses it
+    introVideo.addEventListener('click', () => {
+      if (introVideo.paused) introVideo.play().catch(() => {});
+      else introVideo.pause();
     });
   }
-  if (manifestoVideo) {
-    // manual fallback: if autoplay was blocked (some mobile browsers), tapping the video starts/pauses it
-    manifestoVideo.addEventListener('click', () => {
-      if (manifestoVideo.paused) manifestoVideo.play().catch(() => {});
-      else manifestoVideo.pause();
+  if (introMuteToggle && introVideo) {
+    introMuteToggle.addEventListener('click', () => {
+      introVideo.muted = !introVideo.muted;
+      introMuteToggle.querySelector('.icon-muted').classList.toggle('hidden', !introVideo.muted);
+      introMuteToggle.querySelector('.icon-unmuted').classList.toggle('hidden', introVideo.muted);
+      introMuteToggle.setAttribute('aria-label', introVideo.muted ? 'Unmute video' : 'Mute video');
     });
   }
 
