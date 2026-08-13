@@ -117,6 +117,18 @@
       <a href="index.html#process" class="hover:text-charcoal transition-colors duration-300">How It Works</a>
       <a href="gallery.html" class="hover:text-charcoal transition-colors duration-300">Gallery</a>
       <a href="about.html" class="hover:text-charcoal transition-colors duration-300">About Us</a>
+      <div class="relative">
+        <button type="button" id="companyMenuToggle" class="flex items-center gap-1 hover:text-charcoal transition-colors duration-300" aria-expanded="false" aria-controls="companyMenu">
+          Company
+          <svg id="companyChevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div id="companyMenu" class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-cream rounded-xl shadow-[0_20px_45px_-15px_rgba(39,42,45,0.30)] border border-charcoal/8 py-2 opacity-0 invisible pointer-events-none transition-all duration-200">
+          <a href="news.html" class="block px-4 py-2.5 text-[13px] text-charcoal hover:bg-paper transition-colors">News</a>
+          <a href="franchise.html" class="block px-4 py-2.5 text-[13px] text-charcoal hover:bg-paper transition-colors">Own a Franchise</a>
+          <a href="find-location.html" class="block px-4 py-2.5 text-[13px] text-charcoal hover:bg-paper transition-colors">Find a Location</a>
+          <a href="contact.html" class="block px-4 py-2.5 text-[13px] text-charcoal hover:bg-paper transition-colors">Contact Us</a>
+        </div>
+      </div>
       <a href="index.html#schedule" class="hover:text-charcoal transition-colors duration-300">Schedule</a>
     </div>
     <div class="flex items-center gap-3">
@@ -137,6 +149,10 @@
       <a href="index.html#process" class="mobile-menu-link">How It Works</a>
       <a href="gallery.html" class="mobile-menu-link">Gallery</a>
       <a href="about.html" class="mobile-menu-link">About Us</a>
+      <a href="news.html" class="mobile-menu-link">News</a>
+      <a href="franchise.html" class="mobile-menu-link">Own a Franchise</a>
+      <a href="find-location.html" class="mobile-menu-link">Find a Location</a>
+      <a href="contact.html" class="mobile-menu-link">Contact Us</a>
       <a href="index.html#schedule" class="mobile-menu-link">Schedule</a>
     </div>
   </div>
@@ -278,6 +294,34 @@
     mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMobileMenu));
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) closeMobileMenu();
+    });
+  }
+
+  // company dropdown
+  const companyToggle = document.getElementById("companyMenuToggle");
+  const companyMenu = document.getElementById("companyMenu");
+  const companyChevron = document.getElementById("companyChevron");
+  if (companyToggle && companyMenu) {
+    const closeCompanyMenu = () => {
+      companyMenu.classList.add("opacity-0", "invisible", "pointer-events-none");
+      companyToggle.setAttribute("aria-expanded", "false");
+      if (companyChevron) companyChevron.style.transform = "rotate(0deg)";
+    };
+    const openCompanyMenu = () => {
+      companyMenu.classList.remove("opacity-0", "invisible", "pointer-events-none");
+      companyToggle.setAttribute("aria-expanded", "true");
+      if (companyChevron) companyChevron.style.transform = "rotate(180deg)";
+    };
+    companyToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = companyToggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeCompanyMenu(); else openCompanyMenu();
+    });
+    document.addEventListener("click", (e) => {
+      if (!companyMenu.contains(e.target) && !companyToggle.contains(e.target)) closeCompanyMenu();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeCompanyMenu();
     });
   }
 
