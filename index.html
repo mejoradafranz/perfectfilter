@@ -166,23 +166,6 @@
     margin: 0;
   }
 
-  /* ---- Materials ---- */
-  .material-swatch {
-    height: 96px; border-radius: 16px;
-    box-shadow: inset 0 0 0 1px rgba(39,42,45,0.10);
-  }
-
-  /* ---- Configurator ---- */
-  .finish-swatch {
-    width: 100%; height: 64px; border-radius: 12px;
-    cursor: pointer; border: 1px solid rgba(39,42,45,0.14);
-    transition: box-shadow 0.3s, transform 0.3s;
-  }
-  .finish-option.active .finish-swatch {
-    box-shadow: 0 0 0 2px #C1986C;
-    transform: translateY(-2px);
-  }
-
   .counter { font-variant-numeric: tabular-nums; }
 
   /* ---- How It Works step photos (shown uncropped, at natural aspect ratio) ---- */
@@ -444,16 +427,6 @@
   </div>
 </section>
 
-<!-- ============ MANIFESTO STRIP ============ -->
-<section class="relative border-t border-charcoal/8 py-28 md:py-36">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
-    <p class="reveal font-serif font-light text-[7vw] md:text-[3.2vw] leading-[1.15] tracking-[-0.01em] max-w-[18ch] text-charcoal/90">
-      Every home has a water problem it has learned to ignore.
-      <span class="text-stone">We built the object that stops asking you to.</span>
-    </p>
-  </div>
-</section>
-
 <!-- ============ PRODUCT SHOWCASE ============ -->
 <section id="showcase" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
@@ -703,42 +676,6 @@
   </div>
 </section>
 
-<!-- ============ DESIGN & CRAFT ============ -->
-<section id="design" class="relative border-t border-charcoal/8">
-  <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
-
-    <div class="reveal mb-16 md:mb-20 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Materials</p>
-      <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Chosen for how<br /><span class="italic text-stone">they age, not just how they arrive.</span>
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-      <div class="reveal">
-        <div class="material-swatch" style="background:linear-gradient(120deg,#D8DBD6,#8A8F89 55%,#5C6159);"></div>
-        <p class="mt-4 text-[15px] text-charcoal">Brushed Stainless</p>
-        <p class="mt-1 text-[13px] text-stone">Body &amp; housing</p>
-      </div>
-      <div class="reveal" style="--reveal-delay:60ms">
-        <div class="material-swatch" style="background:linear-gradient(120deg,rgba(255,255,255,0.7),rgba(48,118,168,0.22) 60%,rgba(39,42,45,0.35) );"></div>
-        <p class="mt-4 text-[15px] text-charcoal">Cast Glass</p>
-        <p class="mt-1 text-[13px] text-stone">Reservoir window</p>
-      </div>
-      <div class="reveal" style="--reveal-delay:120ms">
-        <div class="material-swatch" style="background:linear-gradient(120deg,#C9A876,#8C6F45 60%,#4E3B25);"></div>
-        <p class="mt-4 text-[15px] text-charcoal">Anodized Brass</p>
-        <p class="mt-1 text-[13px] text-stone">Accent trim, optional</p>
-      </div>
-      <div class="reveal" style="--reveal-delay:180ms">
-        <div class="material-swatch" style="background:linear-gradient(120deg,#2A322E,#171F1D 70%);"></div>
-        <p class="mt-4 text-[15px] text-charcoal">Aerospace Silicone</p>
-        <p class="mt-1 text-[13px] text-stone">Seals &amp; isolation mounts</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ ECO-LUXURY ============ -->
 <section id="eco" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36 grid lg:grid-cols-2 gap-16">
@@ -840,61 +777,10 @@
 <section id="schedule" class="relative border-t border-charcoal/8">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-28 md:py-36">
 
-    <div class="reveal mb-16 max-w-[60ch]">
-      <p class="text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Get Started</p>
-      <h2 class="font-serif font-light text-[9vw] md:text-[4vw] leading-[1.05] tracking-[-0.01em]">
-        Schedule your<br /><span class="italic text-stone">free water test.</span>
-      </h2>
-      <p class="mt-6 text-stone max-w-[54ch] leading-relaxed">
-        A no-obligation visit from a certified technician — see exactly what's
-        in your water before you decide on anything.
-      </p>
-    </div>
-
-    <div class="reveal grid lg:grid-cols-2 gap-16 items-start">
-
-      <div>
-        <ul class="flex flex-col gap-5 mb-12">
-          <li class="flex items-start gap-3">
-            <span class="stage-dot mt-2 shrink-0"></span>
-            <span class="text-charcoal/85">No cost, no obligation water test</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="stage-dot mt-2 shrink-0"></span>
-            <span class="text-charcoal/85">Installation handled by our own certified team</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="stage-dot mt-2 shrink-0"></span>
-            <span class="text-charcoal/85">Ongoing service for as long as you own it</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="stage-dot mt-2 shrink-0"></span>
-            <span class="text-charcoal/85">Straightforward pricing — no pressure, no surprises</span>
-          </li>
-        </ul>
-
-        <p class="text-[12px] tracking-[0.2em] uppercase text-stone mb-4">Available Finishes</p>
-        <div class="grid grid-cols-3 gap-5 max-w-md">
-          <button type="button" class="finish-option active text-left" data-name="Brushed Steel">
-            <span class="finish-swatch block" style="background:linear-gradient(135deg,#D8DBD6,#8A8F89 55%,#5C6159);"></span>
-            <span class="block mt-3 text-[13px] text-charcoal">Brushed Steel</span>
-          </button>
-          <button type="button" class="finish-option text-left" data-name="Matte Graphite">
-            <span class="finish-swatch block" style="background:linear-gradient(135deg,#3A413E,#171F1D 70%);"></span>
-            <span class="block mt-3 text-[13px] text-charcoal">Matte Graphite</span>
-          </button>
-          <button type="button" class="finish-option text-left" data-name="Warm Brass">
-            <span class="finish-swatch block" style="background:linear-gradient(135deg,#C9A876,#8C6F45 60%,#4E3B25);"></span>
-            <span class="block mt-3 text-[13px] text-charcoal">Warm Brass</span>
-          </button>
-        </div>
-        <p class="mt-3 text-[12px] text-stone">We'll help you choose during your free test.</p>
-      </div>
+    <div class="reveal max-w-xl mx-auto">
 
       <div class="glass rounded-[24px] p-8 md:p-10">
         <form id="scheduleForm" class="flex flex-col gap-4" novalidate>
-          <input type="hidden" id="preferredFinish" name="finish" value="Brushed Steel" />
-
           <div class="flex flex-col gap-1.5">
             <label for="scheduleName" class="text-[12px] tracking-[0.1em] uppercase text-stone">Name</label>
             <input id="scheduleName" name="name" type="text" required autocomplete="name"
@@ -1104,17 +990,6 @@
   }, { threshold: 0.4 });
   counters.forEach((el) => counterIO.observe(el));
 
-  // finish preference: visual selection only, feeds the schedule form's hidden field
-  const finishOptions = document.querySelectorAll('.finish-option');
-  const preferredFinish = document.getElementById('preferredFinish');
-  finishOptions.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      finishOptions.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (preferredFinish) preferredFinish.value = btn.getAttribute('data-name');
-    });
-  });
-
   // schedule form (front-end only placeholder — wire up to a real booking endpoint)
   const scheduleForm = document.getElementById('scheduleForm');
   const scheduleNote = document.getElementById('scheduleNote');
@@ -1127,9 +1002,6 @@
       }
       scheduleNote.textContent = "Request received — we'll call you shortly to schedule your free test.";
       scheduleForm.reset();
-      if (preferredFinish) preferredFinish.value = 'Brushed Steel';
-      finishOptions.forEach((b) => b.classList.remove('active'));
-      if (finishOptions[0]) finishOptions[0].classList.add('active');
     });
   }
 
