@@ -82,6 +82,22 @@
     background: #F2ECE0;
     box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
   }
+
+  /* ---- Stage sequence ---- */
+  .stage-line { position: relative; }
+  .stage-line::before {
+    content: "";
+    position: absolute;
+    left: 15px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(48,118,168,0.5), rgba(48,118,168,0.06));
+  }
+  @media (min-width: 768px) { .stage-line::before { left: 19px; } }
+  .stage-dot {
+    width: 9px; height: 9px; border-radius: 999px;
+    background: #3076A8;
+    box-shadow: 0 0 0 4px rgba(48,118,168,0.15);
+  }
 </style>
 </head>
 
@@ -132,11 +148,12 @@
     <h1 class="reveal font-serif font-light text-[11vw] md:text-[5vw] leading-[1.02] tracking-[-0.01em] max-w-[16ch]">
       Perfect Refiner/Softener
     </h1>
+    <p class="reveal mt-4 text-[13px] tracking-[0.1em] uppercase text-stone">Refiner/Softener System · Water Softening</p>
   </div>
 </header>
 
 <!-- ============ PRODUCT DETAIL ============ -->
-<section class="relative pb-28 md:pb-36">
+<section class="relative pb-24 md:pb-28">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
@@ -147,44 +164,102 @@
 
       <div class="reveal" style="--reveal-delay:80ms">
         <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-4">Description</p>
-        <p class="text-stone leading-relaxed mb-12 max-w-[56ch]">
-          Add your product description here — what it does, who it's for, and
-          why it matters. Replace this placeholder text with real copy when
-          you're ready.
+        <p class="text-stone leading-relaxed max-w-[56ch]">
+          A purification and softening system that reduces chemicals, heavy
+          metals, odor and stale taste, while softening your water by
+          removing calcium and magnesium through our proprietary Cascadion
+          Media blend. A state-of-the-art metering valve measures water
+          volume and knows exactly when to backwash and regenerate —
+          saving you water and salt.
         </p>
-
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-4">Specifications</p>
-        <dl class="flex flex-col divide-y divide-charcoal/8 border-t border-b border-charcoal/8 mb-12">
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Flow Rate</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Dimensions</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Connection Size</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Media Type</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Filter Life</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-          <div class="flex items-center justify-between py-4 gap-6">
-            <dt class="text-stone">Warranty</dt>
-            <dd class="text-charcoal text-right">Add value</dd>
-          </div>
-        </dl>
-
-        <a href="index.html#schedule" class="magnetic inline-flex items-center gap-2 bg-charcoal text-cream text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-gold hover:text-charcoal transition-colors duration-300">
-          Schedule a Free Test
-        </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="relative border-t border-charcoal/8 py-24 md:py-28">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="reveal text-[12px] tracking-[0.28em] uppercase text-blue mb-10 md:mb-12">The Process</p>
+
+    <div class="stage-line flex flex-col gap-12 md:gap-14 pl-10 md:pl-14">
+      <article class="reveal relative">
+        <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stage 1 · Macro Filtration</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">An upper distributor and screen ensure even water distribution, increasing contact time and system efficiency while reducing slippage.</p>
+      </article>
+
+      <article class="reveal relative" style="--reveal-delay:60ms">
+        <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stage 2 · Catalytic Carbon</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">A 1240-mesh catalytic carbon — a highly absorbent, industry-leading media — reduces disinfection byproducts including chlorine, ammonia and chloramines, and aids in breaking down hydrogen sulfide.</p>
+      </article>
+
+      <article class="reveal relative" style="--reveal-delay:120ms">
+        <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stage 3 · Softening Media</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">Cation resin reduces and demineralizes hard minerals like calcium, magnesium and manganese, along with dirt, rust and sediment — protecting plumbing, appliances and fixtures from corrosion.</p>
+      </article>
+
+      <article class="reveal relative" style="--reveal-delay:180ms">
+        <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Stage 4 · Clarity &amp; Polish</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">Premium-grade quartz handles sediment filtration, polishing the water and promoting even distribution through the system.</p>
+      </article>
+
+      <article class="reveal relative" style="--reveal-delay:240ms">
+        <span class="stage-dot absolute -left-10 md:-left-14 top-1.5"></span>
+        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-2">Final · Regeneration</p>
+        <p class="text-stone leading-relaxed max-w-[56ch]">A high-efficiency sodium ion exchange backwashing process keeps the system performing at its best for the long run.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="relative border-t border-charcoal/8 py-24 md:py-28 overflow-hidden">
+  <div class="absolute inset-0" aria-hidden="true">
+    <img src="photos/product-refiner-softener.jpg" alt="" class="w-full h-full object-cover opacity-60" />
+    <div class="absolute inset-0 bg-cream/30"></div>
+  </div>
+  <div class="relative max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="reveal inline-block bg-cream rounded-[20px] px-6 py-6 md:px-8 md:py-7 mb-10 md:mb-12 shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)]">
+      <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-4">Benefits</p>
+      <p class="text-charcoal leading-relaxed max-w-[62ch]">
+        A water softener prolongs the life of your appliances by reducing
+        scale buildup, improves cleaning efficiency by enhancing soap and
+        detergent performance, and prevents soap scum. It's also easier
+        on skin and hair by preventing dryness, reduces plumbing issues
+        by preventing clogs and corrosion, and increases water heater
+        efficiency for lower energy bills — while saving on maintenance
+        and repair costs, improving taste and quality, and preventing
+        staining on sinks, bathtubs and toilets.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8 flex items-center gap-4">
+        <span class="stage-dot shrink-0"></span>
+        <p class="font-serif text-[18px]">Extended Appliance &amp; Pipe Lifespan</p>
+      </div>
+      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8 flex items-center gap-4" style="--reveal-delay:60ms">
+        <span class="stage-dot shrink-0"></span>
+        <p class="font-serif text-[18px]">Healthier Hair &amp; Skin</p>
+      </div>
+      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8 flex items-center gap-4" style="--reveal-delay:120ms">
+        <span class="stage-dot shrink-0"></span>
+        <p class="font-serif text-[18px]">Better Tasting Food</p>
+      </div>
+      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8 flex items-center gap-4" style="--reveal-delay:180ms">
+        <span class="stage-dot shrink-0"></span>
+        <p class="font-serif text-[18px]">Easier Cleaning</p>
+      </div>
+    </div>
+
+    <div class="reveal mt-14 md:mt-16">
+      <a href="index.html#schedule" class="magnetic inline-flex items-center gap-2 bg-charcoal text-cream text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-gold hover:text-charcoal transition-colors duration-300">
+        Schedule a Free Test
+      </a>
     </div>
   </div>
 </section>

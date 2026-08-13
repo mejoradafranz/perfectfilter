@@ -82,6 +82,22 @@
     background: #F2ECE0;
     box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
   }
+
+  /* ---- Stage sequence ---- */
+  .stage-line { position: relative; }
+  .stage-line::before {
+    content: "";
+    position: absolute;
+    left: 15px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(48,118,168,0.5), rgba(48,118,168,0.06));
+  }
+  @media (min-width: 768px) { .stage-line::before { left: 19px; } }
+  .stage-dot {
+    width: 9px; height: 9px; border-radius: 999px;
+    background: #3076A8;
+    box-shadow: 0 0 0 4px rgba(48,118,168,0.15);
+  }
 </style>
 </head>
 
