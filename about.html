@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Perfect Filter System — Perfect Filter</title>
-<meta name="description" content="Perfect Filter System — description and specifications." />
+<title>About — Perfect Filter</title>
+<meta name="description" content="The story behind Perfect Filter — why we started, how the technology works, and what we believe." />
 <link rel="icon" type="image/jpeg" href="photos/logo.jpg" />
 <link rel="apple-touch-icon" href="photos/logo.jpg" />
 
@@ -65,34 +65,19 @@
     html { scroll-behavior: auto; }
   }
 
-  /* ---- Mobile nav (shared with index.html) ---- */
+  /* ---- Mobile nav (shared) ---- */
   .hamburger-line { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s; transform-origin: center; }
   #menuToggle.open .hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   #menuToggle.open .hamburger-line:nth-child(2) { opacity: 0; }
   #menuToggle.open .hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
   .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1); }
-  .mobile-menu.open { max-height: 320px; }
+  .mobile-menu.open { max-height: 360px; }
   .mobile-menu-link {
     display: block; padding: 16px 0; font-size: 15px; letter-spacing: 0.04em;
     color: #272A2D; border-top: 1px solid rgba(39,42,45,0.10);
   }
 
-  /* ---- Product photo ---- */
-  .product-photo {
-    background: #F2ECE0;
-    box-shadow: 0 20px 45px -20px rgba(39,42,45,0.30);
-  }
-
-  /* ---- Stage sequence ---- */
-  .stage-line { position: relative; }
-  .stage-line::before {
-    content: "";
-    position: absolute;
-    left: 15px; top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(180deg, rgba(48,118,168,0.5), rgba(48,118,168,0.06));
-  }
-  @media (min-width: 768px) { .stage-line::before { left: 19px; } }
+  /* ---- Stage sequence (shared) ---- */
   .stage-dot {
     width: 9px; height: 9px; border-radius: 999px;
     background: #3076A8;
@@ -116,7 +101,7 @@
       <a href="index.html#showcase" class="hover:text-charcoal transition-colors duration-300">Showcase</a>
       <a href="index.html#process" class="hover:text-charcoal transition-colors duration-300">How It Works</a>
       <a href="gallery.html" class="hover:text-charcoal transition-colors duration-300">Gallery</a>
-      <a href="about.html" class="hover:text-charcoal transition-colors duration-300">About Us</a>
+      <a href="about.html" class="text-charcoal">About Us</a>
       <a href="index.html#schedule" class="hover:text-charcoal transition-colors duration-300">Schedule</a>
     </div>
     <div class="flex items-center gap-3">
@@ -145,115 +130,119 @@
 <!-- ============ HEADER ============ -->
 <header class="relative pt-40 md:pt-48 pb-12 md:pb-16">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10">
-    <a href="index.html#our-product" class="reveal inline-flex items-center gap-2 text-[13px] text-stone hover:text-charcoal transition-colors duration-300 mb-8">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      Back to Our Product
-    </a>
-    <p class="reveal text-[12px] tracking-[0.32em] uppercase text-blue mb-5">Our Product</p>
+    <p class="reveal text-[12px] tracking-[0.32em] uppercase text-blue mb-5">About Us</p>
     <h1 class="reveal font-serif font-light text-[11vw] md:text-[5vw] leading-[1.02] tracking-[-0.01em] max-w-[16ch]">
-      Perfect Filter System
+      Built in the field,<br /><span class="italic text-stone">not a boardroom.</span>
     </h1>
-    <p class="reveal mt-4 text-[13px] tracking-[0.1em] uppercase text-stone">Whole House System</p>
   </div>
 </header>
 
-<!-- ============ PRODUCT DETAIL ============ -->
+<!-- ============ ORIGIN ============ -->
 <section class="relative pb-24 md:pb-28">
   <div class="max-w-[1400px] mx-auto px-6 md:px-10">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-
-      <div class="reveal product-photo rounded-[24px] overflow-hidden lg:sticky lg:top-28">
-        <img src="photos/product-filter-system-full.jpg" width="1264" height="843"
-          alt="Perfect Filter System" class="w-full h-auto block" />
-      </div>
-
-      <div class="reveal" style="--reveal-delay:80ms">
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-4">Description</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px] mb-6 max-w-[56ch]">
-          A salt-free whole-house purification system built around our
-          proprietary Cascadion Media, designed exclusively for our
-          customers. It's engineered to reduce microplastics, PFAS and
-          other "forever chemicals," heavy metals, pharmaceuticals, odor
-          and stale taste — without stripping the water of what makes
-          it good.
-        </p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px] mb-12 max-w-[56ch]">
-          Rather than removing calcium and magnesium outright, the system
-          reacts with them directly — inhibiting scale buildup on shower
-          glass and fixtures while leaving those minerals in your water,
-          where they belong for your health. A fine-micron filtering
-          process means it only needs a 15–20 second rinse per week, a
-          fraction of the 150+ gallons a traditional salt-based softener
-          burns through backwashing every month.
-        </p>
-
-        <p class="text-[12px] tracking-[0.28em] uppercase text-blue mb-4">Specifications</p>
-        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-4 border-t border-b border-charcoal/8 py-6">
-          <li class="flex items-center gap-3">
-            <span class="stage-dot shrink-0"></span>
-            <span class="text-charcoal">Stainless Steel Housing</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="stage-dot shrink-0"></span>
-            <span class="text-charcoal">115 Volts</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="stage-dot shrink-0"></span>
-            <span class="text-charcoal">20–25 GPM Flow</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="stage-dot shrink-0"></span>
-            <span class="text-charcoal">No Salt Required</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="stage-dot shrink-0"></span>
-            <span class="text-charcoal">Less Water Waste</span>
-          </li>
-        </ul>
-      </div>
+    <div class="reveal flex flex-col gap-5 max-w-[68ch] text-[17px] md:text-[18px] leading-relaxed text-stone">
+      <p>
+        Perfect Filter started in real homes, working through real water
+        problems most companies were content to ignore.
+      </p>
+      <p>
+        Between us, we'd spent years inside the water industry — installing
+        and servicing nearly every kind of system on the market: the
+        genuinely good, the outdated, the overpriced, and more than a few
+        plastic tanks dressed up in clever marketing. One thing became
+        impossible to unsee: families needed clean water without salt,
+        gimmicks, or complications, and almost nothing on the market
+        actually delivered that.
+      </p>
+      <p>
+        The same problems kept turning up, home after home — chlorine,
+        heavy metals, microplastics, scale buildup, strange tastes and
+        smells, skin irritation, damaged plumbing, appliances failing
+        years too early. Every so-called fix seemed to solve one problem
+        while quietly creating another. Perfect Filter was built to end
+        that cycle.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ============ BENEFITS ============ -->
-<section class="relative border-t border-charcoal/8 py-24 md:py-28 overflow-hidden">
-  <div class="absolute inset-0" aria-hidden="true">
-    <img src="photos/product-filter-system.jpg" alt="" class="w-full h-full object-cover opacity-60" />
-    <div class="absolute inset-0 bg-cream/30"></div>
+<!-- ============ TECHNOLOGY ============ -->
+<section class="relative border-t border-charcoal/8 py-24 md:py-28">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="reveal text-[12px] tracking-[0.28em] uppercase text-blue mb-5">The Technology</p>
+    <h2 class="reveal font-serif font-light text-[8vw] md:text-[3.4vw] leading-[1.1] tracking-[-0.01em] max-w-[18ch] mb-8">
+      Perfected once, engineered around ever since.
+    </h2>
+
+    <div class="reveal flex flex-col gap-5 max-w-[68ch] text-[17px] md:text-[18px] leading-relaxed text-stone mb-12">
+      <p>
+        We built a filtration system capable of reaching down to 0.01
+        microns — fine enough to capture microplastics and fine
+        particulates before they ever reach your taps. Paired with our
+        proprietary Cascadion Media, the system also reduces heavy
+        metals, pharmaceuticals, PFAS, forever chemicals, chlorine and
+        chloramines.
+      </p>
+      <p>
+        Unlike a traditional softener, it protects your plumbing from
+        scale buildup without stripping out the minerals your body
+        actually needs — no salt, and none of the wasteful regeneration
+        cycles that can burn through 150-plus gallons of water a month.
+      </p>
+      <p>
+        Once the technology was right, we engineered the rest of the
+        system around it. The goal was simple: build the last home
+        filtration system a family will ever need.
+      </p>
+    </div>
+
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 border-t border-b border-charcoal/8 py-6 max-w-3xl">
+      <li class="flex items-center gap-3">
+        <span class="stage-dot shrink-0"></span>
+        <span class="text-charcoal">Stainless steel housings</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <span class="stage-dot shrink-0"></span>
+        <span class="text-charcoal">0.01 micron filtration</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <span class="stage-dot shrink-0"></span>
+        <span class="text-charcoal">High flow for large homes</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <span class="stage-dot shrink-0"></span>
+        <span class="text-charcoal">Low maintenance</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <span class="stage-dot shrink-0"></span>
+        <span class="text-charcoal">Long service life</span>
+      </li>
+    </ul>
   </div>
-  <div class="relative max-w-[1400px] mx-auto px-6 md:px-10">
-    <div class="reveal inline-block bg-cream rounded-[20px] px-6 py-6 md:px-8 md:py-7 mb-10 md:mb-12 shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)]">
-      <p class="text-[12px] tracking-[0.28em] uppercase text-blue">Benefits</p>
+</section>
+
+<!-- ============ BELIEF ============ -->
+<section class="relative border-t border-charcoal/8 py-24 md:py-28">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="reveal text-[12px] tracking-[0.28em] uppercase text-blue mb-5">Our Belief</p>
+    <h2 class="reveal font-serif font-light text-[8vw] md:text-[3.4vw] leading-[1.15] tracking-[-0.01em] max-w-[20ch] mb-8">
+      A name is either a promise or it's marketing.
+    </h2>
+    <div class="reveal flex flex-col gap-5 max-w-[68ch] text-[17px] md:text-[18px] leading-relaxed text-stone">
+      <p>
+        The name "Perfect Filter" was never meant as a slogan. It's a
+        commitment: build something we'd be proud to install in our own
+        homes, stand behind it fully, and never cut corners to get there.
+      </p>
+      <p>
+        We believe clean water shouldn't be a luxury reserved for one
+        kind of home. Whether it's a small apartment or a house on the
+        hill, every family deserves water they don't have to think
+        twice about.
+      </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8">
-        <p class="font-serif text-[20px] leading-snug mb-3">Micron Filtration Membrane</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Filters down to 0.01 microns — capturing what standard systems let through.</p>
-      </div>
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8" style="--reveal-delay:60ms">
-        <p class="font-serif text-[20px] leading-snug mb-3">Bacteria Reduction</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Targets common waterborne bacteria — including coliform, E. coli and pseudomonas aeruginosa — that can turn up in municipal tap water.</p>
-      </div>
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8" style="--reveal-delay:120ms">
-        <p class="font-serif text-[20px] leading-snug mb-3">Reduces Harsh Contaminants</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Reduces the presence of lead, heavy metals, microplastics, PFAS, pharmaceuticals and other forever chemicals.</p>
-      </div>
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8" style="--reveal-delay:180ms">
-        <p class="font-serif text-[20px] leading-snug mb-3">Scale Inhibitor</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Reduces scale buildup, extending the lifespan of your plumbing system and water appliances.</p>
-      </div>
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8" style="--reveal-delay:240ms">
-        <p class="font-serif text-[20px] leading-snug mb-3">Chlorine/Chloramine Removal</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Removes chlorine and chloramine, common municipal treatment chemicals linked to health concerns.</p>
-      </div>
-      <div class="reveal bg-cream shadow-[0_10px_30px_-10px_rgba(39,42,45,0.20)] rounded-[20px] p-8" style="--reveal-delay:300ms">
-        <p class="font-serif text-[20px] leading-snug mb-3">Proprietary Blend of Media</p>
-        <p class="text-stone leading-relaxed text-[17px] md:text-[18px]">Our proprietary Cascadion Media blend reduces bacteria, chemicals and contaminants known to cause health problems.</p>
-      </div>
-    </div>
-
-    <div class="reveal mt-14 md:mt-16">
+    <div class="reveal mt-12">
       <a href="index.html#schedule" class="magnetic inline-flex items-center gap-2 bg-charcoal text-cream text-[14px] tracking-[0.03em] px-7 py-3.5 rounded-full hover:bg-gold hover:text-charcoal transition-colors duration-300">
         Schedule a Free Test
       </a>
